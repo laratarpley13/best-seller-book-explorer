@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Best Seller Book Explorer</title>
+</head>
+<body>
+    <div>
+        <h1>Best Seller Book Explorer</h1>
+        <section class="about">
+            <h3>About Us</h3>
+            <p>Browse through top books on the New York Times Best Sellers list by date and category and recieve info and top videos about the book and its author(s) to help you discover your next read.</p>
+        </section>
+        <section class="search-criteria" id="js-form">
+            <form>
+                <label for="list-date">Date:</label>
+                <input type="date" name="list-date" id="list-date" min="2015-01-01">
+                <label for="list-name">Category:</label>
+                <select name="list-name" id="list-name">
+                    <option value="combined-print-and-e-book-fiction">Combined Print & E-Book Fiction</option>
+                    <option value="combined-print-and-e-book-nonfiction">Combined Print & E-Book Nonfiction</option>
+                    <option value="hardcover-fiction">Hardcover Fiction</option>
+                    <option value="hardcover-nonfiction">Hardcover Nonfiction</option>
+                    <option value="trade-fiction-paperback">Trade Fiction Paperback</option>
+                    <option value="mass-market-paperback">Mass Market Paperback</option>
+                    <option value="paperback-nonfiction">Paperback Nonfiction</option>
+                    <option value="childrens-middle-grade-hardcover">Children's Middle Grade Hardcover</option>
+                    <option value="picture-books">Children's Picture Books</option>
+                    <option value="series-books">Children's Series</option>
+                    <option value="middle-grade-paperback-monthly">Middle Grade Paperback</option>
+                    <option value="young-adult-hardcover">Young Adult Hardcover</option>
+                    <option value="young-adult-paperback-monthly">Young Adult Paperback</option>
+                    <option value="graphic-books-and-manga">Graphic Books and Manga</option>
+                    <option value="mass-market-monthly">Mass Market</option>
+                    <option value="business-books">Business Books</option>
+                    <option value="advice-how-to-and-miscellaneous">Advice, How-to, and Miscellaneous</option>
+                    <option value="audio-fiction">Audio Fiction</option>
+                    <option value="audio-nonfiction">Audio Nonfiction</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+        <section id="results" class="Hidden">
+            <h2>Results</h2>
+        </section>
+    </div>    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
