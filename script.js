@@ -20,6 +20,7 @@ function displayBooks(responseJson) {
                 <h5>${jsonBookBase[i].contributor}</h5>
                 <p>${jsonBookBase[i].description}</p>
                 <img src=${jsonBookBase[i].book_image} alt="book image">
+                <button type="button" id="#">Get Videos</button>
             </li>
         `)
     }
