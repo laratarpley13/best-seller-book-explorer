@@ -6,6 +6,13 @@ const nytApiKey = 'dNg2AMPOcHV2AxyYGAzIAtAVbIKLXVis'
 //variables to store base urls
 const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/'
 
+//displayBooks function
+function displayBooks(responseJson) {
+    //clear out previous results
+    //use for loop to sort through items
+    //remove the hidden class?
+}
+
 //getBooks function
 function getBooks(bookListCategory) {
     const nytBooksUrl = nytBookBaseUrl + bookListCategory + '.json?api-key=' + nytApiKey;
@@ -18,7 +25,7 @@ function getBooks(bookListCategory) {
             }
             throw new Error (response.statusText);
         })
-        .then(responseJson => console.log(responseJson))
+        .then(responseJson => displayBooks(responseJson))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
