@@ -8,9 +8,23 @@ const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/'
 
 //displayBooks function
 function displayBooks(responseJson) {
+    console.log(responseJson)
     //clear out previous results
+    $('#results-list').empty();
     //use for loop to sort through items
-    //remove the hidden class?
+    const jsonBookBase = responseJson.results.books;
+    for (let i=0; i<jsonBookBase.length; i++){
+        $('#results-list').append(`
+            <li>
+                <h3><a href=${jsonBookBase[i].amazon_product_url} target="_blank">${jsonBookBase[i].title}</a></h3>
+                <h5>${jsonBookBase[i].contributor}</h5>
+                <p>${jsonBookBase[i].description}</p>
+                <img src=${jsonBookBase[i].book_image} alt="book image">
+            </li>
+        `)
+    }
+    //remove the hidden class
+    $('#results').removeClass('hidden');
 }
 
 //getBooks function
