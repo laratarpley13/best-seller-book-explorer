@@ -1,23 +1,21 @@
 'use strict';
 
 //variables to store api keys
+const nytApiKey = 'dNg2AMPOcHV2AxyYGAzIAtAVbIKLXVis'
 
 //variables to store base urls
-
-//displayResults function
-
-//getBooks function
-    //use fetch to call NYT Books API
-        //call displayResults function on responseJson
-
-//getVideos function
-    //use fetch to call YouTube API
-        //call displayResults function on responseJson
+const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key='
 
 //watchForm function
 function watchForm() {
     //listen for submission
-    //prevent default form behavior
-    //validate form entries
-    //call the getBooks function
+    $('#book-form').submit(event => {
+        //prevent default form behavior
+        event.preventDefault();
+        const bookListCategory = $('#list-name').val();
+        console.log(bookListCategory);
+        //getBooks(bookListCategory);
+    });
 }
+
+$(watchForm);
