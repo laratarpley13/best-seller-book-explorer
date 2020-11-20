@@ -1,14 +1,39 @@
 'use strict';
 
 //variables to store api keys
-const nytApiKey = 'dNg2AMPOcHV2AxyYGAzIAtAVbIKLXVis'
+const nytApiKey = 'dNg2AMPOcHV2AxyYGAzIAtAVbIKLXVis';
+const youTubeApiKey = 'AIzaSyCo5BSuKddPPzcISMFrjosVnxodyBbm2FI';
 
 //variables to store base urls
-const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/'
+const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/';
+const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&type=video&key=';
+
+function displayVideos(responseJson) {
+    console.log(responseJson);
+    
+}
 
 //call on YouTube API to get videos
 function getVideos(targetTitle, targetAuthor) {
-    
+    targetTitle = targetTitle.toLowerCase();
+    targetTitle = targetTitle.split(' ').join('%20');
+    targetAuthor = targetAuthor.toLowerCase();
+    targetAuthor = targetAuthor.split(' ').join('%20');
+    const searchQuery = targetTitle + '%20' + targetAuthor + '%20book';
+    const youTubeRequestUrl = youTubeBaseUrl + youTubeApiKey + '&q=' + searchQuery;
+    console.log(youTubeRequestUrl);
+    //api request
+    fetch(youTubeRequestUrl)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error (response.statusText);
+        })
+        .then(responseJson => displayVideos(responseJson))
+        .catch(err => {
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+        });
 }
 
 //watch for video requests
@@ -19,7 +44,6 @@ function watchForVideoRequest(bookInfo) {
         let targetAuthor = "";
         for(let i=0; i<Object.keys(bookInfo).length; i++) {
             if(bookRank === bookInfo[i+1].rank.toString()) {
-                console.log("it worked");
                 targetTitle = bookInfo[i+1].title;
                 targetAuthor = bookInfo[i+1].author;
             }
