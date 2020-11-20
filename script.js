@@ -6,13 +6,25 @@ const nytApiKey = 'dNg2AMPOcHV2AxyYGAzIAtAVbIKLXVis'
 //variables to store base urls
 const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/'
 
+//call on YouTube API to get videos
+function getVideos(targetTitle, targetAuthor) {
+    
+}
+
 //watch for video requests
-function watchForVideoRequest() {
-    console.log("hello, this is a test");
+function watchForVideoRequest(bookInfo) {
     $("button").click(function() {
         const bookRank = (this.id);
-        console.log(bookRank);
-        console.log(responseJson);
+        let targetTitle = "";
+        let targetAuthor = "";
+        for(let i=0; i<Object.keys(bookInfo).length; i++) {
+            if(bookRank === bookInfo[i+1].rank.toString()) {
+                console.log("it worked");
+                targetTitle = bookInfo[i+1].title;
+                targetAuthor = bookInfo[i+1].author;
+            }
+        }
+        getVideos(targetTitle, targetAuthor);
     });
 }
 
@@ -24,6 +36,7 @@ function displayBooks(responseJson) {
     $('#results-list').empty();
     //use for loop to sort through items
     const jsonBookBase = responseJson.results.books;
+    const bookInfo = {};
     for (let i=0; i<jsonBookBase.length; i++){
         $('#results-list').append(`
             <li>
@@ -33,12 +46,16 @@ function displayBooks(responseJson) {
                 <img src=${jsonBookBase[i].book_image} alt="book image">
                 <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos</button>
             </li>
-        `)
+        `);
+        bookInfo[jsonBookBase[i].rank] = {};
+        bookInfo[jsonBookBase[i].rank].title = jsonBookBase[i].title;
+        bookInfo[jsonBookBase[i].rank].author = jsonBookBase[i].author;
+        bookInfo[jsonBookBase[i].rank].rank = jsonBookBase[i].rank;
     }
     //remove the hidden class
     $('#results').removeClass('hidden');
-    //call watchForVideoRequest function
-    watchForVideoRequest();
+    //call watchForVideoRequest function calling on dictionary holding author and title info for each book
+    watchForVideoRequest(bookInfo);
 }
 
 //getBooks function
