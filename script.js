@@ -6,6 +6,17 @@ const nytApiKey = 'dNg2AMPOcHV2AxyYGAzIAtAVbIKLXVis'
 //variables to store base urls
 const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/'
 
+//watch for video requests
+function watchForVideoRequest() {
+    console.log("hello, this is a test");
+    $("button").click(function() {
+        const bookRank = (this.id);
+        console.log(bookRank);
+        console.log(responseJson);
+    });
+}
+
+
 //displayBooks function
 function displayBooks(responseJson) {
     console.log(responseJson)
@@ -20,12 +31,14 @@ function displayBooks(responseJson) {
                 <h5>${jsonBookBase[i].contributor}</h5>
                 <p>${jsonBookBase[i].description}</p>
                 <img src=${jsonBookBase[i].book_image} alt="book image">
-                <button type="button" id="#">Get Videos</button>
+                <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos</button>
             </li>
         `)
     }
     //remove the hidden class
     $('#results').removeClass('hidden');
+    //call watchForVideoRequest function
+    watchForVideoRequest();
 }
 
 //getBooks function
