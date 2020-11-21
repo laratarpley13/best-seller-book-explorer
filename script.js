@@ -6,11 +6,15 @@ const youTubeApiKey = 'AIzaSyCo5BSuKddPPzcISMFrjosVnxodyBbm2FI';
 
 //variables to store base urls
 const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/';
-const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&type=video&key=';
+const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&type=video&videoEmbeddable=true&key=';
 
 function displayVideos(responseJson) {
     console.log(responseJson);
-    
+    const jsonVideoBase = responseJson.items;
+    //use loop to sort through items
+    for(let i=0; i<jsonVideoBase.length; i++){
+        console.log(jsonVideoBase[i].id.videoId);
+    }
 }
 
 //call on YouTube API to get videos
