@@ -5,3 +5,15 @@
 .hidden-videos {
     display: none;
 }
+
+h1 {
+    text-align: center;
+}
+
+.search-criteria {
+    text-align: center;
+}
+
+#video-display ul {
+    list-style: none;
+}

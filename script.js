@@ -83,7 +83,7 @@ function displayBooks(responseJson) {
                 <h5>${jsonBookBase[i].contributor}</h5>
                 <p>${jsonBookBase[i].description}</p>
                 <img src=${jsonBookBase[i].book_image} alt="book image">
-                <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos for ${jsonBookBase[i].title}</button>
+                <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos: "${jsonBookBase[i].title}"</button>
             </li>
         `);
         bookInfo[jsonBookBase[i].rank] = {};
