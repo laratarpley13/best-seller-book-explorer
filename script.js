@@ -10,11 +10,22 @@ const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippe
 
 function displayVideos(responseJson) {
     console.log(responseJson);
+    //clear out previous results
+    $("#video-results").empty();
+    //make variable to make access to json data easier
     const jsonVideoBase = responseJson.items;
     //use loop to sort through items
     for(let i=0; i<jsonVideoBase.length; i++){
         console.log(jsonVideoBase[i].id.videoId);
+        const videoEmbedUrl = "https://www.youtube.com/embed/" + jsonVideoBase[i].id.videoId; 
+        console.log(videoEmbedUrl);
+        $("#video-results").append(`
+            <li>
+                <iframe width="420" height="315" src="${videoEmbedUrl}"></iframe>
+            </li>
+        `)
     }
+    $("#video-display").removeClass("hidden-videos");
 }
 
 //call on YouTube API to get videos
@@ -72,7 +83,7 @@ function displayBooks(responseJson) {
                 <h5>${jsonBookBase[i].contributor}</h5>
                 <p>${jsonBookBase[i].description}</p>
                 <img src=${jsonBookBase[i].book_image} alt="book image">
-                <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos</button>
+                <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos for ${jsonBookBase[i].title}</button>
             </li>
         `);
         bookInfo[jsonBookBase[i].rank] = {};
@@ -81,7 +92,7 @@ function displayBooks(responseJson) {
         bookInfo[jsonBookBase[i].rank].rank = jsonBookBase[i].rank;
     }
     //remove the hidden class
-    $('#results').removeClass('hidden');
+    $('#results').removeClass('hidden-books');
     //call watchForVideoRequest function calling on dictionary holding author and title info for each book
     watchForVideoRequest(bookInfo);
 }
