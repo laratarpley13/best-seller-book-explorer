@@ -2,10 +2,6 @@
     display: none;
 }
 
-.hidden-videos {
-    display: none;
-}
-
 h1 {
     text-align: center;
 }
@@ -14,6 +10,6 @@ h1 {
     text-align: center;
 }
 
-#video-display ul {
+.video-display {
     list-style: none;
 }

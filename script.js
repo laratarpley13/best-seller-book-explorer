@@ -8,29 +8,31 @@ const youTubeApiKey = 'AIzaSyCo5BSuKddPPzcISMFrjosVnxodyBbm2FI';
 const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/';
 const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&type=video&videoEmbeddable=true&key=';
 
-function displayVideos(responseJson) {
+function displayVideos(responseJson, targetTitleId) {
     console.log(responseJson);
-    //clear out previous results
-    $("#video-results").empty();
     //make variable to make access to json data easier
     const jsonVideoBase = responseJson.items;
+    //make targetTitleId variable into useable format to access id in li element 
+    targetTitleId = '#' + targetTitleId;
     //use loop to sort through items
     for(let i=0; i<jsonVideoBase.length; i++){
         console.log(jsonVideoBase[i].id.videoId);
         const videoEmbedUrl = "https://www.youtube.com/embed/" + jsonVideoBase[i].id.videoId; 
         console.log(videoEmbedUrl);
-        $("#video-results").append(`
-            <li>
+        $(targetTitleId).append(`
+            <li class="videos"> 
                 <iframe width="420" height="315" src="${videoEmbedUrl}"></iframe>
             </li>
         `)
     }
-    $("#video-display").removeClass("hidden-videos");
+    //$("#video-display").removeClass("hidden-videos");
 }
 
 //call on YouTube API to get videos
 function getVideos(targetTitle, targetAuthor) {
     targetTitle = targetTitle.toLowerCase();
+    let targetTitleId = targetTitle;
+    targetTitleId = targetTitleId.split(' ').join('-');
     targetTitle = targetTitle.split(' ').join('%20');
     targetAuthor = targetAuthor.toLowerCase();
     targetAuthor = targetAuthor.split(' ').join('%20');
@@ -45,7 +47,7 @@ function getVideos(targetTitle, targetAuthor) {
             }
             throw new Error (response.statusText);
         })
-        .then(responseJson => displayVideos(responseJson))
+        .then(responseJson => displayVideos(responseJson, targetTitleId))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
@@ -77,6 +79,9 @@ function displayBooks(responseJson) {
     const jsonBookBase = responseJson.results.books;
     const bookInfo = {};
     for (let i=0; i<jsonBookBase.length; i++){
+        let bookTitleForId = jsonBookBase[i].title;
+        bookTitleForId = bookTitleForId.toLowerCase();
+        bookTitleForId = bookTitleForId.split(' ').join('-');
         $('#results-list').append(`
             <li>
                 <h3><a href=${jsonBookBase[i].amazon_product_url} target="_blank">${jsonBookBase[i].title}</a></h3>
@@ -84,6 +89,7 @@ function displayBooks(responseJson) {
                 <p>${jsonBookBase[i].description}</p>
                 <img src=${jsonBookBase[i].book_image} alt="book image">
                 <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos: "${jsonBookBase[i].title}"</button>
+                <ul id="${bookTitleForId}" class="video-display"></ul>
             </li>
         `);
         bookInfo[jsonBookBase[i].rank] = {};
