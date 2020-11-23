@@ -1,13 +1,77 @@
+* {
+    box-sizing: border-box;
+    background-color: white;
+}
+body{
+    margin: 0;
+}
+
+header, header *{
+    background-color: #9E2F0F;
+    color: white;
+    margin: 0px;
+}
+
+header h1 {
+    text-align: center;
+    margin: 0px;
+    padding-top: 20px;
+}
+
+header .about {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0px;
+    padding: 15px 20px 20px 20px;
+}
+
+.search-criteria *{
+    background-color: darkgrey;
+    margin: 0px;
+    padding: 12px;
+    text-align: center;
+}
+
+.search-criteria select {
+    background-color: white;
+}
+
+.search-criteria select option {
+    background-color: white;
+}
+
+.search-criteria input[type=submit] {
+    background-color:#9E2F0F;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 7px;
+    margin: 8px;
+}
+
+@media all and (min-width: 875px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    header h1 {
+        padding-bottom: 20px;
+        margin-left: 20px
+    }
+
+    header .about {
+        text-align: left;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
 .hidden-books {
     display: none;
-}
-
-h1 {
-    text-align: center;
-}
-
-.search-criteria {
-    text-align: center;
 }
 
 .video-display {
