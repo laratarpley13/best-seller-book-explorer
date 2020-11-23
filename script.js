@@ -6,7 +6,7 @@ const youTubeApiKey = 'AIzaSyCo5BSuKddPPzcISMFrjosVnxodyBbm2FI';
 
 //variables to store base urls
 const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/';
-const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&type=video&videoEmbeddable=true&key=';
+const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&type=video&videoEmbeddable=true&key=';
 
 function displayVideos(responseJson, targetTitleId) {
     console.log(responseJson);
@@ -48,7 +48,7 @@ function getVideos(targetTitle, targetAuthor) {
         })
         .then(responseJson => displayVideos(responseJson, targetTitleId))
         .catch(err => {
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+            $('#js-error-message').text(`Something went wrong. ${err.message}`);
         });
 }
 
@@ -83,12 +83,18 @@ function displayBooks(responseJson) {
         bookTitleForId = bookTitleForId.split(' ').join('-');
         $('#results-list').append(`
             <li>
-                <h3><a href=${jsonBookBase[i].amazon_product_url} target="_blank">${jsonBookBase[i].title}</a></h3>
-                <h5>${jsonBookBase[i].contributor}</h5>
-                <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos</button>
-                <p>${jsonBookBase[i].description}</p>
-                <img src=${jsonBookBase[i].book_image} alt="book image">
-                <ul id="${bookTitleForId}" class="video-display"></ul>
+                <div class="group">
+                    <div class="item">
+                        <h3><a href=${jsonBookBase[i].amazon_product_url} target="_blank">${jsonBookBase[i].title}</a></h3>
+                        <h5>${jsonBookBase[i].contributor}</h5>
+                        <p class="description">${jsonBookBase[i].description}</p>
+                        <img src=${jsonBookBase[i].book_image} alt="book image" width="322" height="500">
+                        <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos</button>
+                    </div>
+                    <div class="item">
+                        <ul id="${bookTitleForId}" class="video-display"></ul>
+                     </div>
+                </div>
             </li>
         `);
         bookInfo[jsonBookBase[i].rank] = {};

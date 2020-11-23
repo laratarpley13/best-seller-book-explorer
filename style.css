@@ -50,6 +50,35 @@ header .about {
     margin: 8px;
 }
 
+.group {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    flex: 1;
+}
+
+.item iframe {
+    width: 100%;
+}
+
+#results-list li {
+    margin-left: 0px;
+    margin-right: 35px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#results-list li button {
+    background-color:#9E2F0F;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 7px;
+    margin: 0px;
+}
+
 @media all and (min-width: 875px) {
     header {
         display: flex;
@@ -68,6 +97,16 @@ header .about {
         margin-left: 40px;
         margin-right: 40px;
     }
+
+    #results-list .group {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    #results-list li {
+        margin-left: 30px;
+    }
+
 }
 
 .hidden-books {
@@ -76,4 +115,8 @@ header .about {
 
 .video-display {
     list-style: none;
+    text-align: center;
+    justify-content: space-evenly;
+
 }
+
