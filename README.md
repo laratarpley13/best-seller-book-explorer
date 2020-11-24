@@ -1,5 +1,5 @@
 # Best Seller Book Explorer
-[published site]https://laratarpley13.github.io/best-seller-book-explorer/
+https://laratarpley13.github.io/best-seller-book-explorer/
 
 Helps users find new books to read by exploring New York Times Best Sellers lists and corresponding video content from YouTube about the books and their authors.
 
