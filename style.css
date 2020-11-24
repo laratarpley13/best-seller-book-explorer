@@ -50,6 +50,10 @@ header .about {
     margin: 8px;
 }
 
+.error-message {
+    text-align: center;
+}
+
 .results {
     display: flex;
     flex-wrap: wrap;

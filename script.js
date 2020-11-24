@@ -45,7 +45,7 @@ function getVideos(targetTitle, targetAuthor) {
         })
         .then(responseJson => displayVideos(responseJson, targetTitleId))
         .catch(err => {
-            alert("Something went wrong trying to retrieve the videos. Please try again in a few minutes.")
+            $('#js-error-message').text(`Something went wrong trying to retrieve the videos, please try again later. ${err.message}`);
         });
 }
 
@@ -133,7 +133,7 @@ function getBooks(bookListCategory) {
         })
         .then(responseJson => displayBooks(responseJson))
         .catch(err => {
-            alert("Something went wrong: " + err.message);
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
 }
 
