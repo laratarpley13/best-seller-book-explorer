@@ -20,9 +20,7 @@ function displayVideos(responseJson, targetTitleId) {
         const videoEmbedUrl = "https://www.youtube.com/embed/" + jsonVideoBase[i].id.videoId; 
         console.log(videoEmbedUrl);
         $(targetTitleId).append(`
-            <li class="videos"> 
-                <iframe allowfullscreen width="420" height="315" src="${videoEmbedUrl}"></iframe>
-            </li>
+            <iframe class="video" allowfullscreen src="${videoEmbedUrl}"></iframe>
         `)
     }
 }
@@ -31,6 +29,7 @@ function displayVideos(responseJson, targetTitleId) {
 function getVideos(targetTitle, targetAuthor) {
     targetTitle = targetTitle.toLowerCase();
     let targetTitleId = targetTitle;
+    targetTitleId = targetTitleId.replace(/'/g,""); 
     targetTitleId = targetTitleId.split(' ').join('-');
     targetTitle = targetTitle.split(' ').join('%20');
     targetAuthor = targetAuthor.toLowerCase();
@@ -54,7 +53,7 @@ function getVideos(targetTitle, targetAuthor) {
 
 //watch for video requests
 function watchForVideoRequest(bookInfo) {
-    $("button").click(function() {
+    $(".get-videos").click(function() {
         const bookRank = (this.id);
         let targetTitle = "";
         let targetAuthor = "";
@@ -73,17 +72,18 @@ function watchForVideoRequest(bookInfo) {
 function displayBooks(responseJson) {
     console.log(responseJson)
     //clear out previous results
-    $('#results-list').empty();
+    $('#results').empty();
     //use for loop to sort through items
     const jsonBookBase = responseJson.results.books;
     const bookInfo = {};
     for (let i=0; i<jsonBookBase.length; i++){
         let bookTitleForId = jsonBookBase[i].title;
         bookTitleForId = bookTitleForId.toLowerCase();
+        bookTitleForId = bookTitleForId.replace(/'/g, "");
         bookTitleForId = bookTitleForId.split(' ').join('-');
         $('#results').append(`
             <div class="result">
-                <div class="img" style="background-image:url(${jsonBookBase[i].book_image})"></div>
+                <div class="img" style="background-image: url(${jsonBookBase[i].book_image})"></div>
                 <section class="details">
                     <p class="title">${jsonBookBase[i].title}</p>
                     <p class="author">${jsonBookBase[i].contributor}</p>
@@ -92,35 +92,16 @@ function displayBooks(responseJson) {
                         <button class="get-videos" id="${jsonBookBase[i].rank}">Videos</button>
                         <button class="purchase">Purchase</button>
                     </p>
-                    <div class="video-display">
+                    <div class="video-display" id="${bookTitleForId}">
                     </div>
                 </section>
             </div>
-
-
-
-            <li>
-                <div class="group">
-                    <div class="item">
-                        <h3><a href=${jsonBookBase[i].amazon_product_url} target="_blank">${jsonBookBase[i].title}</a></h3>
-                        <h5>${jsonBookBase[i].contributor}</h5>
-                        <p class="description">${jsonBookBase[i].description}</p>
-                        <img src=${jsonBookBase[i].book_image} alt="book image" width="322" height="500">
-                        <button class="get-videos" type="button" id="${jsonBookBase[i].rank}">Get Videos</button>
-                    </div>
-                    <div class="item">
-                        <ul id="${bookTitleForId}" class="video-display"></ul>
-                     </div>
-                </div>
-            </li>
         `);
         bookInfo[jsonBookBase[i].rank] = {};
         bookInfo[jsonBookBase[i].rank].title = jsonBookBase[i].title;
         bookInfo[jsonBookBase[i].rank].author = jsonBookBase[i].author;
         bookInfo[jsonBookBase[i].rank].rank = jsonBookBase[i].rank;
     }
-    //remove the hidden class
-    $('#results').removeClass('hidden-books');
     //call watchForVideoRequest function calling on dictionary holding author and title info for each book
     watchForVideoRequest(bookInfo);
 }

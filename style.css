@@ -22,8 +22,8 @@ header .about {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 0px;
-    padding: 15px 20px 20px 20px;
+    margin: 0 5px;
+    padding: 15px 25px 20px 25px;
 }
 
 .search-criteria *{
@@ -50,42 +50,14 @@ header .about {
     margin: 8px;
 }
 
-.group {
+.results {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     flex-direction: column;
 }
 
-.item {
-    flex: 1;
-}
-
-.item iframe {
-    width: 100%;
-}
-
-#results-list li {
-    margin-left: 0px;
-    margin-right: 35px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-#results-list li button {
-    background-color:#9E2F0F;
-    color: white;
-    border: none;
-    padding: 13px;
-    border-radius: 7px;
-    margin-left: 20%;
-    margin-right: 30%;
-    text-align: center;
-}
-
-.description {
-    margin-right: 40%;
-}
-
-@media all and (min-width: 875px) {
+@media screen and (min-width: 850px){
     header {
         display: flex;
         justify-content: space-between;
@@ -93,7 +65,7 @@ header .about {
 
     header h1 {
         padding-bottom: 20px;
-        margin-left: 20px
+        margin-left: 20px;
     }
 
     header .about {
@@ -104,25 +76,29 @@ header .about {
         margin-right: 40px;
     }
 
-    #results-list .group {
+    .results {
         flex-direction: row;
-        justify-content: space-evenly;
     }
-
-    #results-list li {
-        margin-left: 30px;
-    }
-
 }
 
-.hidden-books {
-    display: none;
+.result {
+    border: 1px solid #cccccc;
+    flex-basis: 25%;
+    margin: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
-.video-display {
-    list-style: none;
-    text-align: center;
-    justify-content: space-evenly;
-
+.result .img {
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
 }
 
+.results .details {
+    padding: 0 20px;
+}
+
+.results .video {
+    height: 150px;
+    margin: 20px 0;
+}
