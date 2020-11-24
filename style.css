@@ -57,7 +57,7 @@ header .about {
     flex-direction: column;
 }
 
-@media screen and (min-width: 775px){
+@media screen and (min-width: 800px){
     header {
         display: flex;
         justify-content: space-between;

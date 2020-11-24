@@ -16,7 +16,6 @@ function displayVideos(responseJson, targetTitleId) {
     targetTitleId = '#' + targetTitleId;
     //use loop to sort through items
     for(let i=0; i<jsonVideoBase.length; i++){
-        console.log(jsonVideoBase[i].id.videoId);
         const videoEmbedUrl = "https://www.youtube.com/embed/" + jsonVideoBase[i].id.videoId; 
         console.log(videoEmbedUrl);
         $(targetTitleId).append(`
@@ -27,6 +26,7 @@ function displayVideos(responseJson, targetTitleId) {
 
 //call on YouTube API to get videos
 function getVideos(targetTitle, targetAuthor) {
+    //set up url for YouTube API and 
     targetTitle = targetTitle.toLowerCase();
     let targetTitleId = targetTitle;
     targetTitleId = targetTitleId.replace(/'/g,""); 
@@ -112,6 +112,7 @@ function displayBooks(responseJson) {
                 </section>
             </div>
         `);
+        //add to object to use to access information later
         bookInfo[jsonBookBase[i].rank] = {};
         bookInfo[jsonBookBase[i].rank].title = jsonBookBase[i].title;
         bookInfo[jsonBookBase[i].rank].author = jsonBookBase[i].author;
@@ -148,7 +149,6 @@ function watchForm() {
         //prevent default form behavior
         event.preventDefault();
         const bookListCategory = $('#list-name').val();
-        console.log(bookListCategory);
         getBooks(bookListCategory);
     });
 }
