@@ -60,8 +60,11 @@ function watchForVideoRequest(bookInfo) {
         let targetAuthor = "";
         for(let i=0; i<Object.keys(bookInfo).length; i++) {
             if(bookRank === bookInfo[i+1].rank.toString()) {
+                let selectorClassIdVideo = ".get-videos#" + bookInfo[i+1].rank.toString();
+                let selectorClassIdPurchase = ".purchase#" + bookInfo[i+1].rank.toString();
                 targetTitle = bookInfo[i+1].title;
                 targetAuthor = bookInfo[i+1].author;
+                $(selectorClassIdVideo).addClass("hide-video-button");
             }
         }
         getVideos(targetTitle, targetAuthor);
