@@ -68,6 +68,16 @@ function watchForVideoRequest(bookInfo) {
     });
 }
 
+function watchForPurchaseRequest(bookInfo) {
+    $(".purchase").click(function() {
+        const bookRank = (this.id);
+        for(let i=0; i<Object.keys(bookInfo).length; i++) {
+            if(bookRank === bookInfo[i+1].rank.toString()) {
+                window.open(bookInfo[i+1].buyLink, "_blank");
+            }
+        }
+    })
+}
 
 //displayBooks function
 function displayBooks(responseJson) {
@@ -92,7 +102,7 @@ function displayBooks(responseJson) {
                     <p class="description">${jsonBookBase[i].description}</p>
                     <p class="buttons">
                         <button class="get-videos" id="${jsonBookBase[i].rank}">Videos</button>
-                        <button class="purchase">Purchase</button>
+                        <button class="purchase" id="${jsonBookBase[i].rank}">Purchase</button>
                     </p>
                     <div class="video-display" id="${bookTitleForId}">
                     </div>
@@ -103,9 +113,11 @@ function displayBooks(responseJson) {
         bookInfo[jsonBookBase[i].rank].title = jsonBookBase[i].title;
         bookInfo[jsonBookBase[i].rank].author = jsonBookBase[i].author;
         bookInfo[jsonBookBase[i].rank].rank = jsonBookBase[i].rank;
+        bookInfo[jsonBookBase[i].rank].buyLink = jsonBookBase[i].amazon_product_url;
     }
     //call watchForVideoRequest function calling on dictionary holding author and title info for each book
     watchForVideoRequest(bookInfo);
+    watchForPurchaseRequest(bookInfo);
 }
 
 //getBooks function

@@ -98,6 +98,28 @@ header .about {
     padding: 0 20px;
 }
 
+.buttons {
+    text-align: center;
+}
+
+.buttons .get-videos {
+    background-color:#9E2F0F;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 7px;
+    margin: 8px;
+}
+
+.purchase input[type=submit] {
+    background-color: white;
+    color: #9E2F0F;
+    border: 3px solid #9E2F0F;
+    padding: 13px;
+    border-radius: 7px;
+    margin: 8px;
+}
+
 .results .video {
     height: 200px;
     margin: 10px;
