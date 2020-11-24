@@ -30,6 +30,7 @@ function getVideos(targetTitle, targetAuthor) {
     targetTitle = targetTitle.toLowerCase();
     let targetTitleId = targetTitle;
     targetTitleId = targetTitleId.replace(/'/g,""); 
+    targetTitleId = targetTitleId.replace(/:/g, "");
     targetTitleId = targetTitleId.split(' ').join('-');
     targetTitle = targetTitle.split(' ').join('%20');
     targetAuthor = targetAuthor.toLowerCase();
@@ -80,6 +81,7 @@ function displayBooks(responseJson) {
         let bookTitleForId = jsonBookBase[i].title;
         bookTitleForId = bookTitleForId.toLowerCase();
         bookTitleForId = bookTitleForId.replace(/'/g, "");
+        bookTitleForId = bookTitleForId.replace(/:/g, "");
         bookTitleForId = bookTitleForId.split(' ').join('-');
         $('#results').append(`
             <div class="result">

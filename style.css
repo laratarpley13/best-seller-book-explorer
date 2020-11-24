@@ -99,6 +99,7 @@ header .about {
 }
 
 .results .video {
-    height: 150px;
-    margin: 20px 0;
+    height: 200px;
+    margin: 10px;
+    
 }
