@@ -9,7 +9,6 @@ const nytBookBaseUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/';
 const youTubeBaseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&type=video&videoEmbeddable=true&key=';
 
 function displayVideos(responseJson, targetTitleId) {
-    console.log(responseJson);
     //make variable to make access to json data easier
     const jsonVideoBase = responseJson.items;
     //make targetTitleId variable into useable format to access id in li element 
@@ -17,7 +16,6 @@ function displayVideos(responseJson, targetTitleId) {
     //use loop to sort through items
     for(let i=0; i<jsonVideoBase.length; i++){
         const videoEmbedUrl = "https://www.youtube.com/embed/" + jsonVideoBase[i].id.videoId; 
-        console.log(videoEmbedUrl);
         $(targetTitleId).append(`
             <iframe class="video" allowfullscreen src="${videoEmbedUrl}"></iframe>
         `)
@@ -37,7 +35,6 @@ function getVideos(targetTitle, targetAuthor) {
     targetAuthor = targetAuthor.split(' ').join('%20');
     const searchQuery = targetTitle + '%20' + targetAuthor + '%20book';
     const youTubeRequestUrl = youTubeBaseUrl + youTubeApiKey + '&q=' + searchQuery;
-    console.log(youTubeRequestUrl);
     //api request
     fetch(youTubeRequestUrl)
         .then(response => {
@@ -84,7 +81,6 @@ function watchForPurchaseRequest(bookInfo) {
 
 //displayBooks function
 function displayBooks(responseJson) {
-    console.log(responseJson)
     //clear out previous results
     $('#results').empty();
     //use for loop to sort through items
@@ -127,7 +123,6 @@ function displayBooks(responseJson) {
 //getBooks function
 function getBooks(bookListCategory) {
     const nytBooksUrl = nytBookBaseUrl + bookListCategory + '.json?api-key=' + nytApiKey;
-    console.log(nytBooksUrl);
     //api request
     fetch(nytBooksUrl)
         .then(response => {
