@@ -21,7 +21,7 @@ function displayVideos(responseJson, targetTitleId) {
         console.log(videoEmbedUrl);
         $(targetTitleId).append(`
             <li class="videos"> 
-                <iframe width="420" height="315" src="${videoEmbedUrl}"></iframe>
+                <iframe allowfullscreen width="420" height="315" src="${videoEmbedUrl}"></iframe>
             </li>
         `)
     }
@@ -81,7 +81,24 @@ function displayBooks(responseJson) {
         let bookTitleForId = jsonBookBase[i].title;
         bookTitleForId = bookTitleForId.toLowerCase();
         bookTitleForId = bookTitleForId.split(' ').join('-');
-        $('#results-list').append(`
+        $('#results').append(`
+            <div class="result">
+                <div class="img" style="background-image:url(${jsonBookBase[i].book_image})"></div>
+                <section class="details">
+                    <p class="title">${jsonBookBase[i].title}</p>
+                    <p class="author">${jsonBookBase[i].contributor}</p>
+                    <p class="description">${jsonBookBase[i].description}</p>
+                    <p class="buttons">
+                        <button class="get-videos" id="${jsonBookBase[i].rank}">Videos</button>
+                        <button class="purchase">Purchase</button>
+                    </p>
+                    <div class="video-display">
+                    </div>
+                </section>
+            </div>
+
+
+
             <li>
                 <div class="group">
                     <div class="item">

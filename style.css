@@ -76,7 +76,13 @@ header .about {
     border: none;
     padding: 13px;
     border-radius: 7px;
-    margin: 0px;
+    margin-left: 20%;
+    margin-right: 30%;
+    text-align: center;
+}
+
+.description {
+    margin-right: 40%;
 }
 
 @media all and (min-width: 875px) {
