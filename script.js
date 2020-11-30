@@ -72,7 +72,8 @@ function watchForVideoRequest(bookInfo) {
 
 function watchForPurchaseRequest(bookInfo) {
     $(".purchase").click(function() {
-        const bookRank = (this.id);
+        let bookRank = (this.id);
+        bookRank = bookRank.slice(9);
         for(let i=0; i<Object.keys(bookInfo).length; i++) {
             if(bookRank === bookInfo[i+1].rank.toString()) {
                 window.open(bookInfo[i+1].buyLink, "_blank");
@@ -96,6 +97,7 @@ function displayBooks(responseJson) {
         bookTitleForId = bookTitleForId.replace(/,/g, "");
         bookTitleForId = bookTitleForId.split('.').join("");
         bookTitleForId = bookTitleForId.split(' ').join('-');
+        let purchaseId = "purchase-" + jsonBookBase[i].rank;
         $('#results').append(`
             <div class="result">
                 <div class="img" style="background-image: url(${jsonBookBase[i].book_image})"></div>
@@ -105,7 +107,7 @@ function displayBooks(responseJson) {
                     <p class="description">${jsonBookBase[i].description}</p>
                     <p class="buttons">
                         <button class="get-videos" id="${jsonBookBase[i].rank}">Videos</button>
-                        <button class="purchase" id="${jsonBookBase[i].rank}">Purchase</button>
+                        <button class="purchase" id="${purchaseId}">Purchase</button>
                     </p>
                     <div class="video-display" id="${bookTitleForId}">
                     </div>
