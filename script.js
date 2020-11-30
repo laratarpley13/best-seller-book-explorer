@@ -31,7 +31,6 @@ function getVideos(targetTitle, targetAuthor) {
     targetTitleId = targetTitleId.replace(/:/g, "");
     targetTitleId = targetTitleId.replace(/,/g, "");
     targetTitleId = targetTitleId.split('.').join("");
-    console.log(targetTitleId); //debugging code
     targetTitleId = targetTitleId.split(' ').join('-');
     targetTitle = targetTitle.split(' ').join('%20');
     targetAuthor = targetAuthor.toLowerCase();
@@ -96,7 +95,6 @@ function displayBooks(responseJson) {
         bookTitleForId = bookTitleForId.replace(/:/g, "");
         bookTitleForId = bookTitleForId.replace(/,/g, "");
         bookTitleForId = bookTitleForId.split('.').join("");
-        console.log(bookTitleForId); //debugging code
         bookTitleForId = bookTitleForId.split(' ').join('-');
         $('#results').append(`
             <div class="result">
@@ -151,7 +149,6 @@ function watchForm() {
         event.preventDefault();
         const bookListCategory = $('#list-name').val();
         getBooks(bookListCategory);
-        alert(`this is a test`); //debugging code
     });
 }
 
