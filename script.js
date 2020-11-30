@@ -48,7 +48,7 @@ function getVideos(targetTitle, targetAuthor) {
         })
         .then(responseJson => displayVideos(responseJson, targetTitleId))
         .catch(err => {
-            $('#js-error-message').text(`Something went wrong trying to retrieve the videos, please try again later. ${err.message}`);
+            alert(`Something went wrong trying to retrieve the videos, please try again later. ${err.message}`);
         });
 }
 
@@ -139,7 +139,7 @@ function getBooks(bookListCategory) {
         })
         .then(responseJson => displayBooks(responseJson))
         .catch(err => {
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+            alert(`Something went wrong: ${err.message}`);
         });
 }
 
@@ -151,6 +151,7 @@ function watchForm() {
         event.preventDefault();
         const bookListCategory = $('#list-name').val();
         getBooks(bookListCategory);
+        alert(`this is a test`); //debugging code
     });
 }
 
